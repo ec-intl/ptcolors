@@ -1,88 +1,37 @@
----
-  name: Sphinx-docs
-  
-  env:
-    PYTHON_VERSION: '3.11'
-  
-  on:
-    pull_request:
-      types: [auto_merge_enabled]
-      branches: [main]
-    push:
-      branches: [main]
-  
-  permissions:
-    contents: write
-    checks: read
-  
-  jobs:
-    build-docs:
-      runs-on: ubuntu-latest
-      environment: build-docs
-  
-      steps:
-        - name: Preamble
-          run: |
-            echo "🎉 The job was triggered by a ${{ github.event_name }} event."
-            echo "🐧 This job is now running on a ${{ runner.os }} server."
-            echo "🔎 Branch is ${{ github.ref }} in ${{ github.repository }}."
-  
-        - name: Check out repository code
-          uses: actions/checkout@v4
-  
-        - name: Status check
-          run: |
-            echo "💡 The ${{ github.repository }} repository has been cloned."
-            echo "🖥️ Ready to test your code on the runner."
-  
-        - name: Set up Python
-          uses: actions/setup-python@v4
-          with:
-            python-version: ${{ env.PYTHON_VERSION }}
-            cache: 'pip'
-  
-        - name: Create and start python virtual environment
-          run: |
-            python -m venv pyenv
-            source pyenv/bin/activate
-  
-        - name: Install required modules
-          run: |
-            python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-  
-        - name: Build html
-          run: |
-            cd ${{ github.workspace }}/docs/
-            sphinx-build -b html source .
-  
-        - name: Start deployment
-          run: |
-            mkdir -p /tmp/${{ github.repository }}-d
-            cp -r ${{ github.workspace }}/docs/* /tmp/${{ github.repository }}-d/
-  
-        - name: Checkout pages branch
-          if: ${{ github.ref == 'refs/heads/main' }}
-          uses: actions/checkout@v4
-          with:
-            ref: 'gh-pages'
-  
-        - name: Update pages branch
-          if: ${{ github.ref == 'refs/heads/main' }}
-          run: |
-            cd ${{ github.workspace }}
-            cp -r /tmp/${{ github.repository }}-d/* ./docs/
-            date > timestamp.txt
-            touch ./docs/.nojekyll
-            git config user.name eci-robot
-            git config user.email info@ec-intl.com
-            git add .
-            git commit -m "gh-pages update"
-            git push
-  
-        - name: Cleanup deployment
-          run: |
-            echo "Cleaning up now."
-            cd ~
-            rm -rf actions_github_pages_*
-            rm -rf /tmp/${{ github.repository }}-d/
+name: Sphinx-docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-docs:
+    name: Build and Deploy Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install sphinx sphinx_rtd_theme  # Add any other Sphinx extensions or dependencies here
+          pip install -r requirements.txt  # If you have additional dependencies listed
+
+      - name: Build Documentation
+        run: |
+          cd docs
+          make html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build_docs/build/html
