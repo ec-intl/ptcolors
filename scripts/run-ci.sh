@@ -41,9 +41,9 @@ run_source_code_tests &
 sleep 1
 echo "------------------------------------------------------------------------"
 wait
-cat ./src/out.src_tests
-rm ./src/out.src_tests
-if [ ! -f out.src_test_success ]; then
+cat ./src/out.source_tests
+rm ./src/out.source_tests
+if [ ! -f out.source_test_success ]; then
     echo "------------------------------------------------------------------------"
     print_color_text "fail" "One or more tests have failed. Exiting..."
     echo "------------------------------------------------------------------------"
@@ -52,6 +52,6 @@ else
     echo "------------------------------------------------------------------------"
     print_color_text "ok" "All tests have passed! You are good to go!"
     echo "------------------------------------------------------------------------"
-    rm -f out.src_test_success
+    rm -f out.source_test_success
     exit 0
 fi
