@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -a
-# shellcheck source=./environments/development.env
-. /home/"${USER}"/"${REPONAME}"/environments/development.env
-set +a
