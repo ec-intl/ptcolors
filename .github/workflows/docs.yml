@@ -1,37 +1,21 @@
-name: Sphinx-docs
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build-docs:
-    name: Build and Deploy Documentation
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install sphinx sphinx_rtd_theme  # Add any other Sphinx extensions or dependencies here
-          pip install -r requirements.txt  # If you have additional dependencies listed
-
-      - name: Build Documentation
-        run: |
-          cd docs
-          make html
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build_docs/build/html
+---
+  name: Sphinx-docs
+  on:
+    pull_request:
+      types:
+        - auto_merge_enabled
+      branches:
+        - staging
+    merge_group:
+    push:
+      branches:
+        - main
+  permissions:
+    contents: write
+    checks: read
+  jobs:
+    docs-tasks:
+      uses: ec-intl/workflow-templates/.github/workflows/docs_template.yml@v1
+      with:
+        doc-type: 'sphinx'
+      secrets: inherit

@@ -21,7 +21,6 @@ The tcolors's codebase structure is as shown below:
 
 ```plaintext
 .
-├── Dockerfile
 ├── LICENSE
 ├── README.md
 ├── VERSION
@@ -61,30 +60,24 @@ The tcolors's codebase structure is as shown below:
 │   │       ├── searchindex.js
 │   │       └── tcolors.html
 │   ├── make.bat
-│   └── source
+│   └── src
 │       ├── __init__.py
 │       ├── _static
 │       ├── _templates
 │       ├── conf.py
 │       ├── index.rst
 │       └── tcolors.rst
-├── docker-compose.yml
 ├── environments
 │   ├── development.env
 │   ├── production.env
 │   ├── staging.env
 │   └── testing.env
-├── requirements
-│   ├── developmemt.txt
-│   ├── production.txt
-│   ├── staging.txt
-│   └── testing.txt
-├── scripts
-│   └── run-ci.sh
+├── requirements.txt
 └── src
     ├── __init__.py
-    ├── __pycache__
-    │   └── tcolors.cpython-311.pyc
-    └── tcolors.py
+    ├── tcolors.py
+    └── tests
+        ├── __init__.py
+        └── test_tcolors.py
 
 ```
