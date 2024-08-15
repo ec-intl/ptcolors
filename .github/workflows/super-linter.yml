@@ -1,0 +1,14 @@
+---
+    name: Lint Code Base
+    on:
+      pull_request:
+        types: [auto_merge_enabled]
+        branches: [staging]
+      merge_group:
+    permissions:
+      contents: read
+      checks: read
+    jobs:
+      linting-jobs:
+        uses: ec-intl/workflow-templates/.github/workflows/super-linter_template.yml@v1
+        secrets: inherit

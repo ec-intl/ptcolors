@@ -1,0 +1,11 @@
+---
+    name: Release Log
+    on:
+      pull_request:
+        types: [closed]
+    permissions:
+      contents: write
+    jobs:
+      logging-tasks:
+        uses: ec-intl/workflow-templates/.github/workflows/release-log_template.yml@v1
+        secrets: inherit

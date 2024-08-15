@@ -1,0 +1,23 @@
+---
+    name: Continuous-Deployment
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      id-token: write
+    concurrency:
+      group: production
+      cancel-in-progress: true
+    on:
+      push:
+        branches: [main]
+    jobs:
+      deployment-tasks:
+        uses: ec-intl/workflow-templates/.github/workflows/cd_template.yml@v1
+        with:
+          runner-name: 'za-3'
+          other-files: '__init__.py,docker-compose.yml,Dockerfile,environments,requirements,src,scripts'
+        secrets: inherit
+      release-tasks:
+        uses: ec-intl/workflow-templates/.github/workflows/make-release_template.yml@v1
+        secrets: inherit
