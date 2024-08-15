@@ -17,7 +17,7 @@
   
   jobs:
     build-docs:
-      runs-on: za-3
+      runs-on: ubuntu-latest
       environment: build-docs
   
       steps:
