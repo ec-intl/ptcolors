@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+alias cdrepo='cd /home/$USER/$REPONAME/'
