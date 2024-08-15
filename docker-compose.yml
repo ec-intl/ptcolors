@@ -1,0 +1,70 @@
+---
+x-linting-common: &linting-common
+  environment:
+    - RUN_LOCAL=true
+    - USE_FIND_ALGORITHM=true
+    - VALIDATE_ALL_CODEBASE=true
+    - FILTER_REGEX_EXCLUDE=.*/(\.mypy_cache/|.*-checkpoint.ipynb).*
+x-ci-common: &testing-common
+  command: ["/bin/bash", "-c", "./scripts/run-ci.sh"]
+  env_file:
+    - environments/testing.env
+services:
+  testing:
+    <<: *testing-common
+    build:
+      context: .
+      target: testing
+      args:
+        - USERNAME=eci-user
+    volumes:
+      - type: bind
+        source: ~/pysrc/tcolors
+        target: /tcolors
+        read_only: false
+    profiles:
+      - testing
+  ci-testing:
+    <<: *testing-common
+    build:
+      context: .
+      target: ci-testing
+      args:
+        - USERNAME=eci-user
+    profiles:
+      - ci-testing
+  linting:
+    image: github/super-linter:v5
+    <<: *linting-common
+    volumes:
+      - ~/pysrc/tcolors:/tmp/lint
+    profiles:
+      - linting
+  ci-linting:
+    build:
+      context: .
+      target: ci-linting
+      args:
+        - USERNAME=eci-user
+    <<: *linting-common
+    profiles:
+      - ci-linting
+  developing:
+    build:
+      context: .
+      args:
+        - USERNAME=${USER}
+    command: ["/bin/bash", "-c", ". /tmp/install &&  nohup /tmp/.sleeping_daemon"]
+    env_file:
+      - environments/development.env
+    volumes:
+      - type: bind
+        source: ~/.ssh
+        target: /home/${USER}/.ssh
+        read_only: true
+      - type: bind
+        source: ~/pysrc/tcolors
+        target: /home/${USER}/pysrc/tcolors
+        read_only: false
+    profiles:
+      - developing
