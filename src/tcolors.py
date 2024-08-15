@@ -103,9 +103,9 @@ class TColors:
 
         :param str info_msg: Info message to be printed on entry.
         :param str success_msg: Success message to be printed on exit if the
-        callback succeeds.
+            callback succeeds.
         :param str failure_msg: Failure message to be printed on exit if the
-        callback fails.
+            callback fails.
         :param callable callback: Callback function to be run in the context.
         :param args: Positional arguments for the callback.
         :param kwargs: Keyword arguments with expected Exception.
