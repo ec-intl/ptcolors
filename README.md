@@ -1,8 +1,8 @@
-# tcolors Repository
+# ptcolors Repository
 
-`tcolors` is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications, scripts, or simply want to enhance the readability of your terminal messages, `tcolors` provides an easy-to-use interface to bring your text to life.
+`ptcolors` is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications, scripts, or simply want to enhance the readability of your terminal messages, `ptcolors` provides an easy-to-use interface to bring your text to life.
 
-With `tcolors`, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It's perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of ANSI escape codes.
+With `ptcolors`, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It's perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of ANSI escape codes.
 
 ## Project Status
 
@@ -19,7 +19,7 @@ Here's the current status of our workflows:
 
 ## Components
 
-The tcolors's codebase structure is as shown below:
+The ptcolors's codebase structure is as shown below:
 
 ```plaintext
 .
@@ -37,7 +37,7 @@ The tcolors's codebase structure is as shown below:
 │       ├── _templates
 │       ├── conf.py
 │       ├── index.rst
-│       └── tcolors.rst
+│       └── ptcolors.rst
 ├── environments
 │   ├── development.env
 │   ├── production.env
@@ -46,29 +46,28 @@ The tcolors's codebase structure is as shown below:
 ├── requirements.txt
 ├── setup.py
 └── src
-    ├── tcolors
+    ├── ptcolors
     │   ├── __init__.py
     │   └── tcolors.py
     └── tests
         ├── __init__.py
-        └── test_tcolors.py
+        └── test_ptcolors.py
 
 ```
 
 ## Example
 
-Here's an example of how to use `tcolors`:
+Here's an example of how to use `ptcolors`:
 
 ```python
-# test_import.py
-from tcolors.tcolors import TColors
+from ptcolors.ptcolors import TColors
 
-tcolors = TColors()
-tcolors.headermsg("This is a header message.")
-tcolors.okmsg("This is a success message.")
-tcolors.warnmsg("This is a warning message.")
-tcolors.failmsg("This is a failure message.")
-tcolors.infomsg("This is an info message.")
+ptcolors = ptcolors()
+ptcolors.headermsg("This is a header message.")
+ptcolors.okmsg("This is a success message.")
+ptcolors.warnmsg("This is a warning message.")
+ptcolors.failmsg("This is a failure message.")
+ptcolors.infomsg("This is an info message.")
 ```
 
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.

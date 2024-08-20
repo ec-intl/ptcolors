@@ -10,7 +10,7 @@ setup(
     ),
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/ec-intl/tcolors",
+    url="https://github.com/ec-intl/ptcolors",
     packages=["ptcolors"],
     package_dir={"": "src"},
     license="Apache License 2.0",
