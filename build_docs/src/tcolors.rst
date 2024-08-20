@@ -1,6 +1,3 @@
-tcolors Module
-==============
-
 .. automodule:: tcolors
    :members:
    :undoc-members:
