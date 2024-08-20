@@ -1,7 +1,7 @@
-from setuptools import find_packages, setup
+from setuptools import setup
 
 setup(
-    name="tcolors",
+    name="ptcolors",
     version="0.1.0",
     author="Elizabeth Consulting International Inc.",
     author_email="info@ec-intl.com",
@@ -11,7 +11,7 @@ setup(
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/ec-intl/tcolors",
-    packages=["tcolors"],
+    packages=["ptcolors"],
     package_dir={"": "src"},
     license="Apache License 2.0",
     classifiers=[

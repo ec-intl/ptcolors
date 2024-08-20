@@ -30,37 +30,6 @@ The tcolors's codebase structure is as shown below:
 │   ├── Makefile
 │   ├── __init__.py
 │   ├── build
-│   │   ├── doctrees
-│   │   │   ├── environment.pickle
-│   │   │   ├── index.doctree
-│   │   │   └── tcolors.doctree
-│   │   └── html
-│   │       ├── _sources
-│   │       │   ├── index.rst.txt
-│   │       │   └── tcolors.rst.txt
-│   │       ├── _static
-│   │       │   ├── alabaster.css
-│   │       │   ├── basic.css
-│   │       │   ├── custom.css
-│   │       │   ├── doctools.js
-│   │       │   ├── documentation_options.js
-│   │       │   ├── file.png
-│   │       │   ├── jquery-3.5.1.js
-│   │       │   ├── jquery.js
-│   │       │   ├── language_data.js
-│   │       │   ├── minus.png
-│   │       │   ├── plus.png
-│   │       │   ├── pygments.css
-│   │       │   ├── searchtools.js
-│   │       │   ├── underscore-1.13.1.js
-│   │       │   └── underscore.js
-│   │       ├── genindex.html
-│   │       ├── index.html
-│   │       ├── objects.inv
-│   │       ├── py-modindex.html
-│   │       ├── search.html
-│   │       ├── searchindex.js
-│   │       └── tcolors.html
 │   ├── make.bat
 │   └── src
 │       ├── __init__.py
@@ -75,11 +44,49 @@ The tcolors's codebase structure is as shown below:
 │   ├── staging.env
 │   └── testing.env
 ├── requirements.txt
+├── setup.py
 └── src
-    ├── __init__.py
-    ├── tcolors.py
+    ├── tcolors
+    │   ├── __init__.py
+    │   └── tcolors.py
     └── tests
         ├── __init__.py
         └── test_tcolors.py
 
+```
+
+## Example
+
+Here's an example of how to use `tcolors`:
+
+```python
+# test_import.py
+from tcolors.tcolors import TColors
+
+tcolors = TColors()
+tcolors.headermsg("This is a header message.")
+tcolors.okmsg("This is a success message.")
+tcolors.warnmsg("This is a warning message.")
+tcolors.failmsg("This is a failure message.")
+tcolors.infomsg("This is an info message.")
+```
+
+Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.
+
+```python
+msg = wu.TColors()
+
+def __call__(self):
+    """Run the target sequence."""
+    # The context manager is entered here, and the messages are set up.
+    with self.msg.messages(
+        f"Starting {self.name()}...",  # Message displayed at the start
+        f"{self.name()} complete.",    # Message displayed on successful completion
+        f"{self.name()} failed.",      # Message displayed on failure
+        self.config["function"],       # The function to be executed
+        *self.config["function-arguments"],  # Positional arguments for the function
+        **self.config,                 # Keyword arguments for the function
+    ) as status:
+        # The status is set based on the outcome of the context manager block
+        self.status = status
 ```
