@@ -32,4 +32,4 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest ./src/tests/
+          pytest -v --cov ./src/tests/
