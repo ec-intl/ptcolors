@@ -10,6 +10,7 @@ Here's the current status of our workflows:
 
 | Workflow                | Status |
 |-------------------------|--------|
+| Continuous Integration  | ![Continuous-Integration](https://img.shields.io/badge/Continuous--Integration-passing-brightgreen) |
 | Documentation           | ![Docs](https://img.shields.io/badge/Docs-passing-brightgreen) |
 | Guard Main Branch       | ![Guard Main Branch](https://img.shields.io/badge/Guard%20Main%20Branch-passing-brightgreen) |
 | Code Quality Checker           | ![Lint Code Base](https://img.shields.io/badge/Lint%20Code%20Base-passing-brightgreen) |
