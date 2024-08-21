@@ -46,6 +46,19 @@ Here are a few examples of how you can use **ptcolors** to enhance your terminal
    tcolors.failmsg("This is a failure message.")
    tcolors.infomsg("This is an info message.")
 
+This should create a terminal output similar to the one below.
+
+.. raw:: html
+
+    <pre style="color: lightgreen; background-color: black;">
+    2024-08-21 10:33:39 [ <span style="color: magenta;">NOTICE</span> ] This is a header message.
+    2024-08-21 10:33:39 [ <span style="color: green;">SUCCESS</span> ] This is a success message.
+    2024-08-21 10:33:39 [ <span style="color: yellow;">WARNING</span> ] This is a warning message.
+    2024-08-21 10:33:39 [ <span style="color: red;">FAILURE</span> ] This is a failure message.
+    2024-08-21 10:33:39 [ <span style="color: blue;">INFORMATION</span> ] This is an info message.
+    </pre>
+
+
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.
 
 .. code-block:: python

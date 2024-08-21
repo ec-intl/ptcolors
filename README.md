@@ -43,6 +43,8 @@ The ptcolors's codebase structure is as shown below:
 │   ├── production.env
 │   ├── staging.env
 │   └── testing.env
+├── requirements
+│   ├── testing.txt
 ├── requirements.txt
 ├── setup.py
 └── src
@@ -69,6 +71,16 @@ ptcolors.warnmsg("This is a warning message.")
 ptcolors.failmsg("This is a failure message.")
 ptcolors.infomsg("This is an info message.")
 ```
+
+This should create a terminal output similar to the one below.
+
+<pre style="color: lightgreen; background-color: black;">
+2024-08-21 10:33:39 [ <span style="color: magenta;">NOTICE</span> ] This is a header message.
+2024-08-21 10:33:39 [ <span style="color: green;">SUCCESS</span> ] This is a success message.
+2024-08-21 10:33:39 [ <span style="color: yellow;">WARNING</span> ] This is a warning message.
+2024-08-21 10:33:39 [ <span style="color: red;">FAILURE</span> ] This is a failure message.
+2024-08-21 10:33:39 [ <span style="color: blue;">INFORMATION</span> ] This is an info message.
+</pre>
 
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.
 
