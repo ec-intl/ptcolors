@@ -1,0 +1,77 @@
+name: Sphinx-docs
+
+on:
+  pull_request:
+    types:
+      - auto_merge_enabled
+    branches:
+      - staging
+  merge_group:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  checks: read
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preamble
+        run: |
+          echo "🎉 A ${{ github.event_name }} triggered a ${{ runner.os }} job."
+          echo "🔎 The branch is ${{ github.ref_name }} in ${{ github.repository }}."
+        
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          echo "📦 Installing Python dependencies."
+          python -m pip install --upgrade pip
+          if [ -f requirements/testing.txt ]; then
+            pip install -r requirements/testing.txt;
+          fi
+
+      - name: Run Sphinx
+        run: |
+          echo "📦 Running Sphinx."
+          python -m venv pyenv
+          source pyenv/bin/activate
+          cd build_docs
+          sphinx-build -b html src ../docs
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p /tmp/"${{ github.repository }}"-d
+          cp -r docs/* /tmp/"${{ github.repository }}"-d/
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git fetch
+          git checkout -B gh-pages origin/gh-pages || git checkout --orphan gh-pages
+          rm -rf ./*
+          cp -r /tmp/"${{ github.repository }}"-d/* .
+          touch .nojekyll
+          git add .
+          git commit -m "🚀 $(date): update docs"
+          git push origin gh-pages --force
+
+      - name: Cleanup deployment
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Cleaning up now."
+          rm -rf /tmp/"${{ github.repository }}"-d/
+
+      - name: Finish
+        run: |
+          echo "📣 The job has been completed."
+          echo "🍏 This job's status is ${{ job.status }}."
