@@ -8,7 +8,7 @@ Created Aug 2022
 import unittest
 from unittest.mock import patch
 
-from src.ptcolors import tcolors as wu
+from ptcolors import ptcolors as wu
 
 
 class TestTColors(unittest.TestCase):

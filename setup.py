@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="ptcolors",
-    version="0.1.0",
+    version="0.1.1",
     author="Elizabeth Consulting International Inc.",
     author_email="info@ec-intl.com",
     description=(

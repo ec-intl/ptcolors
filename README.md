@@ -48,7 +48,7 @@ The ptcolors's codebase structure is as shown below:
 └── src
     ├── ptcolors
     │   ├── __init__.py
-    │   └── tcolors.py
+    │   └── ptcolors.py
     └── tests
         ├── __init__.py
         └── test_ptcolors.py
@@ -60,7 +60,7 @@ The ptcolors's codebase structure is as shown below:
 Here's an example of how to use `ptcolors`:
 
 ```python
-from ptcolors.ptcolors import TColors
+from ptcolors.tcolors import TColors
 
 ptcolors = ptcolors()
 ptcolors.headermsg("This is a header message.")
@@ -73,7 +73,9 @@ ptcolors.infomsg("This is an info message.")
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.
 
 ```python
-msg = wu.TColors()
+from ptcolors.tcolors import TColors
+
+msg = TColors()
 
 def __call__(self):
     """Run the target sequence."""
