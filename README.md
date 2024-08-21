@@ -10,10 +10,10 @@ Here's the current status of our workflows:
 
 | Workflow                | Status |
 |-------------------------|--------|
-| Continuous Integration  | ![Continuous-Integration](https://img.shields.io/badge/Continuous--Integration-passing-brightgreen) |
-| Documentation           | ![Docs](https://img.shields.io/badge/Docs-passing-brightgreen) |
-| Guard Main Branch       | ![Guard Main Branch](https://img.shields.io/badge/Guard%20Main%20Branch-passing-brightgreen) |
-| Code Quality Checker           | ![Lint Code Base](https://img.shields.io/badge/Lint%20Code%20Base-passing-brightgreen) |
+| Continuous Integration  | [![Continuous-Integration](https://github.com/ec-intl/ptcolors/actions/workflows/ci.yml/badge.svg)](https://github.com/ec-intl/ptcolors/actions/workflows/ci.yml) |
+| Documentation           | [![Sphinx-docs](https://github.com/ec-intl/ptcolors/actions/workflows/docs.yml/badge.svg)](https://github.com/ec-intl/ptcolors/actions/workflows/docs.yml) |
+| Guard Main Branch       | [![Guard Main Branch](https://github.com/ec-intl/ptcolors/actions/workflows/guard.yml/badge.svg)](https://github.com/ec-intl/ptcolors/actions/workflows/guard.yml) |
+| Code Quality Checker           | [![Lint Codebase](https://github.com/ec-intl/ptcolors/actions/workflows/super-linter.yml/badge.svg)](https://github.com/ec-intl/ptcolors/actions/workflows/super-linter.yml) |
 
 ## Components
 
