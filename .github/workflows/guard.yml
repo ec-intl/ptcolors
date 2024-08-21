@@ -11,24 +11,24 @@
       contents: read
     jobs:
       branch-check:
-    runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]') }}
-    steps:
-      - name: Preamble
-        run: |
-          echo "🎉 A $EVENT triggered a ${{ runner.os }} job."
-          echo "🔎 The branch is $BRANCH in $REPO."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Guard the main branch
-        if: ${{ env.HEAD != 'staging' && env.HEAD != ''}}
-        run: |
-          echo "🚫 The main branch is protected."
-          echo "🚫 Pull requests to main must come from staging branch."
-          exit 1
-      - name: Notify
-        run: |
-          echo "📣 The job has been completed."
-          echo "🔔 The main branch is protected."
-          echo "🍏 This job's status is ${{ job.status }}."
+        runs-on: ubuntu-latest
+        if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]') }}
+        steps:
+          - name: Preamble
+            run: |
+              echo "🎉 A $EVENT triggered a ${{ runner.os }} job."
+              echo "🔎 The branch is $BRANCH in $REPO."
+          - name: Check out repository code
+            uses: actions/checkout@v4
+          - name: Guard the main branch
+            if: ${{ env.HEAD != 'staging' && env.HEAD != ''}}
+            run: |
+              echo "🚫 The main branch is protected."
+              echo "🚫 Pull requests to main must come from staging branch."
+              exit 1
+          - name: Notify
+            run: |
+              echo "📣 The job has been completed."
+              echo "🔔 The main branch is protected."
+              echo "🍏 This job's status is ${{ job.status }}."
 
