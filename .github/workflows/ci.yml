@@ -12,9 +12,13 @@ permissions:
   contents: read
   checks: read
 
+env:
+  EVENT: ${{ github.event_name }}
+
 jobs:
   ci-tasks:
     runs-on: ubuntu-latest
+    environment: staging
 
     steps:
       - name: Checkout code
@@ -49,6 +53,7 @@ jobs:
         run: python -m build
       
       - name: Upload to Test PyPI
+        if: ${{ env.EVENT == 'merge_group' }}
         env:
           TWINE_PASSWORD: ${{ secrets.TEST_PYPI_KEY }}
         run: |
