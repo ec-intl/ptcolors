@@ -75,12 +75,12 @@
     <span style="color:blue;">s</span> Documentation!
 </h1><p><strong>ptcolors</strong> is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications, scripts, or simply want to enhance the readability of your terminal messages, <strong>ptcolors</strong> provides an easy-to-use interface to bring your text to life.</p>
 <p>With <strong>ptcolors</strong>, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It’s perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of <strong>ANSI</strong> escape codes.</p>
-<p>Below, you can find more information on the TColors class source code.</p>
+<p>Below, you can find more information on the PTColors class source code.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">API Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ptcolors.html">ptcolors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ptcolors.html#ptcolors.TColors"><code class="docutils literal notranslate"><span class="pre">TColors</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptcolors.html#ptcolors.PTColors"><code class="docutils literal notranslate"><span class="pre">PTColors</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -88,9 +88,9 @@
 <section id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h1>
 <p>Here are a few examples of how you can use <strong>ptcolors</strong> to enhance your terminal output:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ptcolors.ptcolors</span> <span class="kn">import</span> <span class="n">TColors</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ptcolors.ptcolors</span> <span class="kn">import</span> <span class="n">PTColors</span>
 
-<span class="n">tcolors</span> <span class="o">=</span> <span class="n">TColors</span><span class="p">()</span>
+<span class="n">tcolors</span> <span class="o">=</span> <span class="n">PTColors</span><span class="p">()</span>
 <span class="n">tcolors</span><span class="o">.</span><span class="n">headermsg</span><span class="p">(</span><span class="s2">&quot;This is a header message.&quot;</span><span class="p">)</span>
 <span class="n">tcolors</span><span class="o">.</span><span class="n">okmsg</span><span class="p">(</span><span class="s2">&quot;This is a success message.&quot;</span><span class="p">)</span>
 <span class="n">tcolors</span><span class="o">.</span><span class="n">warnmsg</span><span class="p">(</span><span class="s2">&quot;This is a warning message.&quot;</span><span class="p">)</span>
@@ -106,9 +106,9 @@
 2024-08-21 10:33:39 [ <span style="color: red;">FAILURE</span> ] This is a failure message.
 2024-08-21 10:33:39 [ <span style="color: blue;">INFORMATION</span> ] This is an info message.
 </pre><p>Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ptcolors.ptcolors</span> <span class="kn">import</span> <span class="n">TColors</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ptcolors.ptcolors</span> <span class="kn">import</span> <span class="n">PTColors</span>
 
-<span class="n">msg</span> <span class="o">=</span> <span class="n">TColors</span><span class="p">()</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">PTColors</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the target sequence.&quot;&quot;&quot;</span>
