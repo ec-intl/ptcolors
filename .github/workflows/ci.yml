@@ -12,9 +12,13 @@ permissions:
   contents: read
   checks: read
 
+env:
+  EVENT: ${{ github.event_name }}
+
 jobs:
   ci-tasks:
     runs-on: ubuntu-latest
+    environment: staging
 
     steps:
       - name: Checkout code
@@ -33,3 +37,20 @@ jobs:
       - name: Run tests
         run: |
           pytest -v --cov ./src/tests/
+      
+      - name: Build and upload to Test PyPI
+        if: ${{ env.EVENT == 'merge_group' }}
+        env:
+          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_KEY }}
+        run: |
+          echo "📦 Installing Python dependencies."
+          python -m pip install --upgrade pip
+          if [ -f requirements/staging.txt ]; then
+            pip install -r requirements/staging.txt;
+          fi
+          python -m pip install --upgrade build
+          python -m build
+          python -m twine upload --repository testpypi dist/*
+
+      - name: Done
+        run: echo "🎉 Deployment complete!"

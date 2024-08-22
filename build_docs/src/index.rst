@@ -21,7 +21,7 @@
 
 With **ptcolors**, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It's perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of **ANSI** escape codes.
 
-Below, you can find more information on the TColors class source code.
+Below, you can find more information on the PTColors class source code.
 
 .. toctree::
    :maxdepth: 2
@@ -37,9 +37,9 @@ Here are a few examples of how you can use **ptcolors** to enhance your terminal
 
 .. code-block:: python
 
-   from ptcolors.ptcolors import TColors
+   from ptcolors.ptcolors import PTColors
 
-   tcolors = TColors()
+   tcolors = PTColors()
    tcolors.headermsg("This is a header message.")
    tcolors.okmsg("This is a success message.")
    tcolors.warnmsg("This is a warning message.")
@@ -63,9 +63,9 @@ Here’s an example of using a context manager to handle resources, like managin
 
 .. code-block:: python
 
-    from ptcolors.ptcolors import TColors
+    from ptcolors.ptcolors import PTColors
 
-    msg = TColors()
+    msg = PTColors()
 
     def __call__(self):
         """Run the target sequence."""
