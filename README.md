@@ -1,6 +1,6 @@
 # ptcolors Repository
 
-`ptcolors` is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications, scripts, or simply want to enhance the readability of your terminal messages, `ptcolors` provides an easy-to-use interface to bring your text to life.
+`ptcolors` is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications and scripts or simply want to enhance the readability of your terminal messages, `ptcolors` provides an easy-to-use interface to bring your text to life.
 
 With `ptcolors`, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It's perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of ANSI escape codes.
 
@@ -55,14 +55,18 @@ The ptcolors's codebase structure is as shown below:
 Here's an example of how to use `ptcolors`:
 
 ```python
+# import the PTColors class
 from ptcolors.ptcolors import PTColors
 
-ptcolors = PTColors()
-ptcolors.headermsg("This is a header message.")
-ptcolors.okmsg("This is a success message.")
-ptcolors.warnmsg("This is a warning message.")
-ptcolors.failmsg("This is a failure message.")
-ptcolors.infomsg("This is an info message.")
+# create a msg object
+msg = PTColors()
+
+# use the msg methods
+msg.headermsg("This is a header message.")
+msg.okmsg("This is a success message.")
+msg.warnmsg("This is a warning message.")
+msg.failmsg("This is a failure message.")
+msg.infomsg("This is an info message.")
 ```
 
 This should create a terminal output similar to the one below.
@@ -75,24 +79,30 @@ This should create a terminal output similar to the one below.
 2024-08-21 10:33:39 [ <span style="color: blue;">INFORMATION</span> ] This is an info message.
 </pre>
 
-Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.
+Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently. Here we demonstrate using the PTColors context manager.
 
 ```python
+# import the PTColors class
 from ptcolors.ptcolors import PTColors
 
+# instanstiate a PTColors object called msg
 msg = PTColors()
 
-def __call__(self):
-    """Run the target sequence."""
-    # The context manager is entered here, and the messages are set up.
-    with self.msg.messages(
-        f"Starting {self.name()}...",  # Message displayed at the start
-        f"{self.name()} complete.",    # Message displayed on successful completion
-        f"{self.name()} failed.",      # Message displayed on failure
-        self.config["function"],       # The function to be executed
-        *self.config["function-arguments"],  # Positional arguments for the function
-        **self.config,                 # Keyword arguments for the function
-    ) as status:
-        # The status is set based on the outcome of the context manager block
-        self.status = status
+# define a callback function foo that takes an argument bar
+def foo(bar):
+    pass
+
+# Use the context manager messages in the script
+with msg.messages(
+    "Running the foo function...",          # Message displayed at the start
+    "foo function complete...",             # Message displayed on successful completion
+    "foo function experienced a problem!",  # Message displayed on failure
+    foo,                                    # The callback or function to be executed (foo)
+    *[bar,],                                # Positional arguments for the function (bar)
+    **{Exeception: RunTimeError,},          # The Required keyword arguments
+) as status:
+    if not status:
+        print("Hooray!")
+    else:
+        print("Oh no!")
 ```
