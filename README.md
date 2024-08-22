@@ -55,9 +55,9 @@ The ptcolors's codebase structure is as shown below:
 Here's an example of how to use `ptcolors`:
 
 ```python
-from ptcolors.ptcolors import TColors
+from ptcolors.ptcolors import PTColors
 
-ptcolors = ptcolors()
+ptcolors = PTColors()
 ptcolors.headermsg("This is a header message.")
 ptcolors.okmsg("This is a success message.")
 ptcolors.warnmsg("This is a warning message.")
@@ -78,9 +78,9 @@ This should create a terminal output similar to the one below.
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently.
 
 ```python
-from ptcolors.ptcolors import TColors
+from ptcolors.ptcolors import PTColors
 
-msg = TColors()
+msg = PTColors()
 
 def __call__(self):
     """Run the target sequence."""

@@ -11,11 +11,11 @@ from unittest.mock import patch
 from ptcolors import ptcolors as wu
 
 
-class TestTColors(unittest.TestCase):
-    """Test the TColors class."""
+class TestPTColors(unittest.TestCase):
+    """Test the PTColors class."""
 
     def setUp(self):
-        self.colors = wu.TColors()
+        self.colors = wu.PTColors()
 
     @patch("builtins.print")
     def test_defaultmsg(self, mock_print):
