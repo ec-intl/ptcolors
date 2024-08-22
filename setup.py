@@ -1,12 +1,8 @@
 from setuptools import setup
 
-# Read the version from the VERSION file
-with open("VERSION", "r", encoding="utf-8") as version_file:
-    version = version_file.read().strip()
-
 setup(
     name="ptcolors",
-    version=version,
+    version="0.1.4",
     author="Elizabeth Consulting International Inc.",
     author_email="info@ec-intl.com",
     description=(
