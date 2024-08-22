@@ -89,7 +89,7 @@ from ptcolors.ptcolors import PTColors
 msg = PTColors()
 
 # define a callback function foo that takes an argument bar
-def foo(bar):
+def foo(bar: str) -> None:
     pass
 
 # Use the context manager messages in the script
@@ -98,7 +98,7 @@ with msg.messages(
     "foo function complete...",             # Message displayed on successful completion
     "foo function experienced a problem!",  # Message displayed on failure
     foo,                                    # The callback or function to be executed (foo)
-    *[bar,],                                # Positional arguments for the function (bar)
+    *["bar",],                              # Positional arguments for the function (bar)
     **{Exeception: RunTimeError,},          # The Required keyword arguments
 ) as status:
     if not status:
