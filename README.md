@@ -72,7 +72,7 @@ msg.infomsg("This is an info message.")
 
 This should create a terminal output similar to the one below.
 
-![Example 1 Output](static/img/example1.jpeg)
+![Example 1 Output](https://ecisite.s3.amazonaws.com/static/img/example1.jpeg)
 
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently. Here we demonstrate using the PTColors context manager.
 
@@ -107,4 +107,4 @@ with msg.messages(
 
 This should create a terminal output similar to the one below.
 
-![Example 2 Output](static/img/example2.jpeg)
+![Example 2 Output](https://ecisite.s3.amazonaws.com/static/img/example2.jpeg)
