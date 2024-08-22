@@ -64,6 +64,7 @@ jobs:
           git add .
           git commit -m "🚀 $(date): update docs"
           git push origin gh-pages --force
+          date > timestamp.txt
 
       - name: Cleanup deployment
         if: github.ref == 'refs/heads/main'

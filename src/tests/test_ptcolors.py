@@ -8,14 +8,14 @@ Created Aug 2022
 import unittest
 from unittest.mock import patch
 
-from ptcolors import ptcolors as wu
+from ptcolors import ptcolors as ptc
 
 
 class TestPTColors(unittest.TestCase):
     """Test the PTColors class."""
 
     def setUp(self):
-        self.colors = wu.PTColors()
+        self.colors = ptc.PTColors()
 
     @patch("builtins.print")
     def test_defaultmsg(self, mock_print):
