@@ -1,6 +1,7 @@
 # ptcolors Repository
 
 `ptcolors` is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications and scripts or simply want to enhance the readability of your terminal messages, `ptcolors` provides an easy-to-use interface to bring your text to life.
+`ptcolors` is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications and scripts or simply want to enhance the readability of your terminal messages, `ptcolors` provides an easy-to-use interface to bring your text to life.
 
 With `ptcolors`, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It's perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of ANSI escape codes.
 
@@ -23,6 +24,7 @@ The ptcolors's codebase structure is as shown below:
 .
 ├── LICENSE
 ├── README.md
+├── MANIFEST.in
 ├── MANIFEST.in
 ├── VERSION
 ├── build_docs
@@ -58,7 +60,18 @@ Here's an example of how to use `ptcolors`:
 ```python
 # import the PTColors class
 from ptcolors.ptcolors import PTColors
+# import the PTColors class
+from ptcolors.ptcolors import PTColors
 
+# create a msg object
+msg = PTColors()
+
+# use the msg methods
+msg.headermsg("This is a header message.")
+msg.okmsg("This is a success message.")
+msg.warnmsg("This is a warning message.")
+msg.failmsg("This is a failure message.")
+msg.infomsg("This is an info message.")
 # create a msg object
 msg = PTColors()
 
@@ -72,8 +85,9 @@ msg.infomsg("This is an info message.")
 
 This should create a terminal output similar to the one below.
 
-![Example 1 Output](static/img/example1.jpeg)
+![Example 1 Output](https://ecisite.s3.amazonaws.com/static/img/example1.jpeg)
 
+Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently. Here we demonstrate using the PTColors context manager.
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently. Here we demonstrate using the PTColors context manager.
 
 ```python
@@ -107,4 +121,4 @@ with msg.messages(
 
 This should create a terminal output similar to the one below.
 
-![Example 2 Output](static/img/example2.jpeg)
+![Example 2 Output](https://ecisite.s3.amazonaws.com/static/img/example2.jpeg)
