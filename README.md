@@ -23,6 +23,7 @@ The ptcolors's codebase structure is as shown below:
 .
 ├── LICENSE
 ├── README.md
+├── MANIFEST.in
 ├── VERSION
 ├── build_docs
 │   ├── Makefile
@@ -71,26 +72,23 @@ msg.infomsg("This is an info message.")
 
 This should create a terminal output similar to the one below.
 
-<pre style="color: lightgreen; background-color: black;">
-2024-08-21 10:33:39 [ <span style="color: magenta;">NOTICE</span> ] This is a header message.
-2024-08-21 10:33:39 [ <span style="color: green;">SUCCESS</span> ] This is a success message.
-2024-08-21 10:33:39 [ <span style="color: yellow;">WARNING</span> ] This is a warning message.
-2024-08-21 10:33:39 [ <span style="color: red;">FAILURE</span> ] This is a failure message.
-2024-08-21 10:33:39 [ <span style="color: blue;">INFORMATION</span> ] This is an info message.
-</pre>
+![Example 1 Output](static/img/example1.jpeg)
 
 Here’s an example of using a context manager to handle resources, like managing messages during a function’s execution. Context managers in Python, typically implemented with the with statement, allow you to control resource allocation and release efficiently. Here we demonstrate using the PTColors context manager.
 
 ```python
 # import the PTColors class
 from ptcolors.ptcolors import PTColors
+from builtins import RuntimeError
 
 # instanstiate a PTColors object called msg
 msg = PTColors()
 
+
 # define a callback function foo that takes an argument bar
 def foo(bar: str) -> None:
-    pass
+    """A simple function that prints the argument passed to it."""
+
 
 # Use the context manager messages in the script
 with msg.messages(
@@ -99,10 +97,14 @@ with msg.messages(
     "foo function experienced a problem!",  # Message displayed on failure
     foo,                                    # The callback or function to be executed (foo)
     *["bar",],                              # Positional arguments for the function (bar)
-    **{Exeception: RunTimeError,},          # The Required keyword arguments
+    **{"Exception": RuntimeError, },          # The Required keyword arguments
 ) as status:
     if not status:
         print("Hooray!")
     else:
         print("Oh no!")
 ```
+
+This should create a terminal output similar to the one below.
+
+![Example 2 Output](static/img/example2.jpeg)
