@@ -14,6 +14,7 @@ permissions:
 
 env:
   EVENT: ${{ github.event_name }}
+  BRANCH: ${{ github.ref }}
 
 jobs:
   ci-tasks:
@@ -27,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
@@ -37,9 +38,9 @@ jobs:
       - name: Run tests
         run: |
           pytest -v --cov ./src/tests/
-      
+
       - name: Build and upload to Test PyPI
-        if: ${{ env.EVENT == 'merge_group' }}
+        if: ${{ vars.STAGE_TO_PYPI == 'yes' && contains(env.BRANCH, 'staging') && env.EVENT == 'merge_group' }}
         env:
           TWINE_PASSWORD: ${{ secrets.TEST_PYPI_KEY }}
         run: |
