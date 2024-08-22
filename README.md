@@ -101,7 +101,7 @@ msg = PTColors()
 
 # define a callback function foo that takes an argument bar
 def foo(bar: str) -> None:
-    """A simple function that prints the argument passed to it."""
+    """A function that does nothing."""
 
 
 # Use the context manager messages in the script
@@ -111,7 +111,7 @@ with msg.messages(
     "foo function experienced a problem!",  # Message displayed on failure
     foo,                                    # The callback or function to be executed (foo)
     *["bar",],                              # Positional arguments for the function (bar)
-    **{"Exception": RuntimeError, },          # The Required keyword arguments
+    **{"Exception": RuntimeError, },        # The Required keyword arguments
 ) as status:
     if not status:
         print("Hooray!")
