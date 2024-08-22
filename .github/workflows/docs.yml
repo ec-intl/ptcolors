@@ -61,6 +61,7 @@ jobs:
           rm -rf ./*
           cp -r /tmp/"${{ github.repository }}"-d/* .
           touch .nojekyll
+          date > timestamp.txt
           git add .
           git commit -m "🚀 $(date): update docs"
           git push origin gh-pages --force

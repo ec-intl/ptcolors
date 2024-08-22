@@ -19,7 +19,7 @@ import datetime as dt
 from contextlib import contextmanager
 
 
-class TColors:
+class PTColors:
     """Terminal colors."""
 
     HEADER = "\033[95m"
@@ -30,7 +30,7 @@ class TColors:
     ENDC = "\033[0m"
 
     def __init__(self):
-        """Initialize TColors class."""
+        """Initialize PTColors class."""
         self.timestamp = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def defaultmsg(
@@ -114,7 +114,7 @@ class TColors:
 
         .. code-block:: python
 
-                with TColors().messages(
+                with PTColors().messages(
                     "Starting...",
                     "Success...",
                     "Failure...",
