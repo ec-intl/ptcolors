@@ -122,15 +122,18 @@ class PTColors:
                     *args,
                     **kwargs,
                 ) as status:
-                    self.status = status
+                    if status:
+                        # Do something if the callback fails
+                    else:
+                        # Do something if the callback succeeds
         """
-        status = 0
+        exception = kwargs.get("Exception", Exception)
         try:
             self.infomsg(info_msg)
-            callback(*args)
+            callback(*args, **kwargs)
             self.okmsg(success_msg)
-            yield status
-        except kwargs["Exception"] as e:
+            yield 0
+        except exception as e:
             self.failmsg(failure_msg)
             self.failmsg(str(e))
-        return 1
+            yield 1
