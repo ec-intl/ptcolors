@@ -204,7 +204,10 @@ callback fails.</p></li>
     <span class="o">*</span><span class="n">args</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">status</span><span class="p">:</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
+    <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
+        <span class="c1"># Do something if the callback fails</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Do something if the callback succeeds</span>
 </pre></div>
 </div>
 </dd></dl>
