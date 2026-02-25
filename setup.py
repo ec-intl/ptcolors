@@ -10,13 +10,14 @@ setup(
     author="Elizabeth Consulting International Inc.",
     author_email="info@ec-intl.com",
     description=(
-        "A lightweight Python package for adding customizable terminal colors."
+        "A lightweight Python package for adding colored terminal output."
     ),
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/ec-intl/ptcolors",
     project_urls={
         "Homepage": "https://github.com/ec-intl/ptcolors",
+        "Documentation": "https://github.ec-intl.com/ptcolors/",
         "Issues": "https://github.com/ec-intl/ptcolors/issues",
     },
     packages=["ptcolors"],
