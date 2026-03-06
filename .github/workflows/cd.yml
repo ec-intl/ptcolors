@@ -35,10 +35,21 @@
               fi
 
           - name: Upgrade build tools
-            run: python -m pip install --upgrade build
+            run: python -m pip install --upgrade build twine
+
+          - name: Clean previous builds
+            run: rm -rf build dist *.egg-info src/*.egg-info || true
+
+          - name: Check VERSION and README
+            run: |
+              ls -l VERSION README.md
+              cat VERSION
 
           - name: Build the package
             run: python -m build
+
+          - name: Check built distributions
+            run: python -m twine check dist/*
 
           - name: Upload to PyPI
             if: ${{ vars.DEPLOY_TO_PYPI == 'yes' }}
