@@ -49,8 +49,24 @@ jobs:
           if [ -f requirements/staging.txt ]; then
             pip install -r requirements/staging.txt;
           fi
-          python -m pip install --upgrade build
+          
+          echo "🧹 Cleaning old build artifacts."
+          rm -rf build dist *.egg-info src/*.egg-info || true
+
+          echo "🔍 Checking metadata source files."
+          ls -l VERSION README.md
+          cat VERSION
+
+          echo "🛠️ Installing build tools."
+          python -m pip install --upgrade build twine
+
+          echo "🏗️ Building package."
           python -m build
+
+          echo "✅ Checking distributions."
+          python -m twine check dist/*
+
+          echo "🚀 Uploading to Test PyPI."
           python -m twine upload --repository testpypi dist/*
 
       - name: Done
