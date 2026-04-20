@@ -16,12 +16,12 @@
         steps:
           - name: Preamble
             run: |
-              echo "🎉 A $EVENT triggered a ${{ runner.os }} job."
-              echo "🔎 The branch is $BRANCH in $REPO."
+              echo "🎉 A ${{ github.event_name }} triggered a ${{ runner.os }} job."
+              echo "🔎 The branch is ${{ github.ref_name }} in ${{ github.repository }}."
           - name: Check out repository code
-            uses: actions/checkout@v4
+            uses: actions/checkout@v6
           - name: Guard the main branch
-            if: ${{ env.HEAD != 'staging' && env.HEAD != ''}}
+            if: ${{ github.event_name == 'pull_request' && github.head_ref != 'staging' }}
             run: |
               echo "🚫 The main branch is protected."
               echo "🚫 Pull requests to main must come from staging branch."
