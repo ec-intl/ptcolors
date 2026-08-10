@@ -25,12 +25,12 @@ jobs:
           echo "🔎 The branch is ${{ github.ref_name }} in ${{ github.repository }}."
         
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
-          python-version: '3.11'
+          python-version: '3.13'
           cache: 'pip'
 
       - name: Install Python dependencies
