@@ -19,7 +19,7 @@
               echo "🎉 A ${{ github.event_name }} triggered a ${{ runner.os }} job."
               echo "🔎 The branch is ${{ github.ref_name }} in ${{ github.repository }}."
           - name: Check out repository code
-            uses: actions/checkout@v6
+            uses: actions/checkout@v7
           - name: Guard the main branch
             if: ${{ github.event_name == 'pull_request' && github.head_ref != 'staging' }}
             run: |
