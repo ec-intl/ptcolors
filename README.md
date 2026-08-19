@@ -16,6 +16,10 @@
 
 With `ptcolors`, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It's perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of ANSI escape codes.
 
+## Julia Version
+
+Looking for the Julia package? See [PTColors.jl](https://github.com/ec-intl/PTColors.jl), ECI’s related Julia package for color-coded, timestamped terminal messages.
+
 ## Project Status
 
 Here's the current status of our workflows:

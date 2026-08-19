@@ -18,6 +18,7 @@ setup(
     project_urls={
         "Homepage": "https://github.com/ec-intl/ptcolors",
         "Issues": "https://github.com/ec-intl/ptcolors/issues",
+        "Julia package": "https://github.com/ec-intl/PTColors.jl",
     },
     packages=["ptcolors"],
     package_dir={"": "src"},
