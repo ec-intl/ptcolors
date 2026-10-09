@@ -86,6 +86,71 @@ Here’s an example of using a context manager to handle resources, like managin
             # The status is set based on the outcome of the context manager block
             self.status = status
 
+Custom headers and multiline messages
+-------------------------------------
+
+Use ``defaultmsg`` with ``typ`` to choose your own header. Labels have a
+minimum width of 11 terminal columns. Short labels are centered, and
+longer labels are preserved in full.
+
+Messages can be strings containing ``\n`` or lists of strings. Each call
+prints one timestamp and header. Continuation lines align beneath that
+call's first message line, and intentional blank lines are preserved.
+The standard message methods also support multiline input.
+
+Multiline messages have spaced dashed connections on their first and last
+lines, joined by a solid right-hand bracket. Intermediate lines, including
+blank rows, have only the vertical marker. The bracket sits beyond the
+longest visible message line.
+
+Set ``color`` to an existing ANSI color such as ``PTColors.INFO``, or omit
+it for an uncolored header and guide. Each grouping marker uses the header's
+color, independently of any ANSI styling inside the message.
+
+Multiline terminal output wraps at spaces where possible, reserving room
+for the actual header width and grouping guide. Long words split between
+Unicode grapheme clusters, keeping accents and joined characters together.
+Width calculations also account for combined emoji. Their actual appearance
+and width can still vary with the terminal's rendering support.
+Files, pipes, and ordinary buffers keep their supplied line breaks.
+Single-line messages keep their existing layout.
+
+If the guide cannot fit, a grapheme is too wide, or the message contains
+controls other than ANSI color/style codes, the supplied text is printed
+without a guide. Very narrow output may still wrap naturally in the
+terminal. Resizing after printing does not reformat earlier messages.
+
+.. code-block:: python
+
+   from ptcolors.ptcolors import PTColors
+
+   msg = PTColors()
+
+   msg.defaultmsg(
+       "Sending the workload.\nUsing the selected configuration.",
+       typ="LOCAL",
+       color=PTColors.INFO,
+   )
+
+   msg.defaultmsg(
+       ["Calculation running.", "Waiting for results."],
+       typ="REMOTE CONTROLLER",
+       color=PTColors.INFO,
+   )
+
+   lines = [
+       "Calculation completed.",
+       "Results saved locally.",
+       "Temporary machine removed.",
+   ]
+   msg.okmsg(lines)
+
+Example terminal output:
+
+.. image:: https://ecilsite-staging.s3.us-east-1.amazonaws.com/static/img/ptcolors/ptcolors-python-multiline-grouping.png
+   :alt: Custom headers and multiline messages with matching right-hand grouping guides
+   :width: 100%
+
 Indices and tables
 ==================
 

@@ -1,7 +1,9 @@
 cloud-sptheme==1.10.1.post20200504175005
 pytest==8.3.2
 pytest-cov==5.0.0
+regex==2026.9.29
 sphinx==7.3.7
 sphinx-autoapi==3.1.2
 setuptools==84.0.0
 twine==5.1.1
+wcwidth==0.9.2
