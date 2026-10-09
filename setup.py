@@ -22,6 +22,7 @@ setup(
     },
     packages=["ptcolors"],
     package_dir={"": "src"},
+    install_requires=["regex"],
     license="Apache License 2.0",
     classifiers=[
         "Programming Language :: Python :: 3",
