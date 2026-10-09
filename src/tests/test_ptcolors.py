@@ -273,11 +273,9 @@ class TestMessageFormatter(unittest.TestCase):
     def test_return_value(self):
         """Keep the existing None return value."""
         with redirect_stdout(io.StringIO()):
-            result = self.colors.defaultmsg(
-                ["first", "second"], typ="LOCAL"
+            self.assertIsNone(
+                self.colors.defaultmsg(["first", "second"], typ="LOCAL")
             )
-
-        self.assertIsNone(result)
 
     def test_guide_alignment_for_each_longest_line_position(self):
         """Keep the bracket aligned whichever message line is longest."""
