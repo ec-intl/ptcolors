@@ -343,6 +343,125 @@ class TestMessageFormatter(unittest.TestCase):
             + "e\u0301  ─ ─ ─ ─┘\n",
         )
 
+    def test_emoji_headers_use_display_width(self):
+        """Pad emoji headers and align continuations by displayed columns."""
+        for emoji in ("👩\u200d🔬", "👍🏽", "©\ufe0f"):
+            cases = [
+                {
+                    "label": emoji,
+                    "header": "[    " + emoji + "     ]",
+                    "indent": 36,
+                },
+                {
+                    "label": "123456789" + emoji,
+                    "header": "[123456789" + emoji + "]",
+                    "indent": 36,
+                },
+                {
+                    "label": "REMOTE " + emoji + " CONTROLLER",
+                    "header": "[REMOTE " + emoji + " CONTROLLER]",
+                    "indent": 45,
+                },
+            ]
+            for case in cases:
+                for color in (None, ptc.PTColors.INFO):
+                    with self.subTest(label=case["label"], color=color):
+                        out = self.capture_layout(
+                            self.colors.defaultmsg,
+                            ["first", "second"],
+                            typ=case["label"],
+                            color=color,
+                        )
+                        self.assertEqual(
+                            out,
+                            "2000-01-01 00:00:00  " + case["header"]
+                            + "  first  ─ ─ ─┐\n"
+                            + " " * case["indent"] + "second ─ ─ ─┘\n",
+                        )
+
+    def test_emoji_guides_align_with_ascii_lines(self):
+        """Align emoji and ASCII rows in terminals and unbounded streams."""
+        for emoji in ("👩\u200d🔬", "👍🏽", "©\ufe0f"):
+            for columns in (None, 80):
+                for color in (None, ptc.PTColors.INFO):
+                    with self.subTest(
+                        emoji=emoji, columns=columns, color=color
+                    ):
+                        out = self.capture_layout(
+                            self.colors.defaultmsg,
+                            [emoji, "ok", "go"],
+                            typ="LOCAL",
+                            color=color,
+                            columns=columns,
+                        )
+                        self.assertEqual(
+                            out,
+                            "2000-01-01 00:00:00  [   LOCAL   ]  "
+                            + emoji + " ─ ─ ─┐\n"
+                            + " " * 36 + "ok      │\n"
+                            + " " * 36 + "go ─ ─ ─┘\n",
+                        )
+
+    def test_emoji_wraps_at_available_columns(self):
+        """Fit two complete two-column emoji into a four-column row."""
+        for emoji in ("👩\u200d🔬", "👍🏽", "©\ufe0f"):
+            with self.subTest(emoji=emoji):
+                out = self.capture_layout(
+                    self.colors.defaultmsg,
+                    [emoji * 3, "x"],
+                    typ="LOCAL",
+                    columns=48,
+                )
+                self.assertEqual(
+                    out,
+                    "2000-01-01 00:00:00  [   LOCAL   ]  "
+                    + emoji * 2 + " ─ ─ ─┐\n"
+                    + " " * 36 + emoji + "        │\n"
+                    + " " * 36 + "x  ─ ─ ─ ─┘\n",
+                )
+
+    def test_emoji_fits_without_unnecessary_fallback(self):
+        """Keep the guide when exactly two message columns remain."""
+        for emoji in ("👩\u200d🔬", "👍🏽", "©\ufe0f"):
+            with self.subTest(emoji=emoji):
+                out = self.capture_layout(
+                    self.colors.defaultmsg,
+                    [emoji, "x"],
+                    typ="LOCAL",
+                    columns=46,
+                )
+                self.assertEqual(
+                    out,
+                    "2000-01-01 00:00:00  [   LOCAL   ]  "
+                    + emoji + " ─ ─ ─┐\n"
+                    + " " * 36 + "x  ─ ─ ─┘\n",
+                )
+
+    def test_emoji_styles_survive_wrapping(self):
+        """Preserve message styles and the separate guide color with emoji."""
+        for emoji in ("👩\u200d🔬", "👍🏽", "©\ufe0f"):
+            with self.subTest(emoji=emoji):
+                raw = self.capture_output(
+                    self.colors.defaultmsg,
+                    ["\033[31m" + emoji * 3 + "\033[0m", "x"],
+                    typ="LOCAL",
+                    color=ptc.PTColors.INFO,
+                    columns=48,
+                )
+                self.assertIn(
+                    "\033[31m" + emoji * 2
+                    + "\033[0m \033[94m─ ─ ─┐\033[0m\n",
+                    raw,
+                )
+                self.assertIn(
+                    " " * 36 + "\033[31m" + emoji
+                    + "\033[0m \033[94m       │\033[0m\n",
+                    raw,
+                )
+                self.assertTrue(raw.endswith(
+                    " " * 36 + "x \033[94m ─ ─ ─ ─┘\033[0m\n"
+                ))
+
     def test_empty_single_line_inputs(self):
         """An empty string or list retains the single-line layout."""
         for message in ("", []):

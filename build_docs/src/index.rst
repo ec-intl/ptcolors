@@ -110,6 +110,8 @@ color, independently of any ANSI styling inside the message.
 Multiline terminal output wraps at spaces where possible, reserving room
 for the actual header width and grouping guide. Long words split between
 Unicode grapheme clusters, keeping accents and joined characters together.
+Width calculations also account for combined emoji. Their actual appearance
+and width can still vary with the terminal's rendering support.
 Files, pipes, and ordinary buffers keep their supplied line breaks.
 Single-line messages keep their existing layout.
 

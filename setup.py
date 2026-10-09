@@ -22,7 +22,7 @@ setup(
     },
     packages=["ptcolors"],
     package_dir={"": "src"},
-    install_requires=["regex"],
+    install_requires=["regex", "wcwidth>=0.2.13,<1"],
     license="Apache License 2.0",
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -18,10 +18,10 @@
 import datetime as dt
 import os
 import sys
-import unicodedata
 from contextlib import contextmanager
 
 import regex
+from wcwidth import wcswidth
 
 
 class PTColors:
@@ -40,17 +40,12 @@ class PTColors:
 
     @staticmethod
     def _text_width(text):
-        """Return the column width, excluding ANSI color and style codes."""
+        """Measure complete graphemes, excluding ANSI color and style codes."""
+        plain = regex.sub(r"\x1b\[[0-9;:]*m", "", text)
         width = 0
 
-        for character in regex.sub(r"\x1b\[[0-9;:]*m", "", text):
-            if unicodedata.category(character) in ("Mn", "Me", "Cf", "Cc"):
-                continue
-
-            if unicodedata.east_asian_width(character) in ("W", "F"):
-                width += 2
-            else:
-                width += 1
+        for grapheme in regex.findall(r"\X", plain):
+            width += max(0, wcswidth(grapheme))
 
         return width
 
