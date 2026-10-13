@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Examples &#8212; ptcolors 0.1.0 documentation</title>
+    <title>Julia Version &#8212; ptcolors 0.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
@@ -53,7 +53,7 @@
              accesskey="N">next</a> &nbsp; &nbsp;</li>
     <li><a href="#">ptcolors 0.1.0 documentation</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Examples</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Julia Version</a></li> 
       </ul>
     </div>
     </div>
@@ -75,6 +75,9 @@
     <span style="color:blue;">s</span> Documentation!
 </h1><p><strong>ptcolors</strong> is a lightweight Python package designed to add vibrant, customizable colors to your terminal output with minimal effort. Whether you’re building command-line applications, scripts, or simply want to enhance the readability of your terminal messages, <strong>ptcolors</strong> provides an easy-to-use interface to bring your text to life.</p>
 <p>With <strong>ptcolors</strong>, you can apply a wide range of colors and styles to your terminal text, making it more engaging and visually appealing. It’s perfect for developers who want to add a splash of color to their terminal without dealing with the complexities of <strong>ANSI</strong> escape codes.</p>
+<section id="julia-version">
+<h1>Julia Version<a class="headerlink" href="#julia-version" title="Link to this heading">¶</a></h1>
+<p>Looking for the Julia package? See <a class="reference external" href="https://github.com/ec-intl/PTColors.jl">PTColors.jl</a>, ECI’s related Julia package for color-coded, timestamped terminal messages.</p>
 <p>Below, you can find more information on the PTColors class source code.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">API Contents:</span></p>
@@ -85,17 +88,18 @@
 </li>
 </ul>
 </div>
+</section>
 <section id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h1>
 <p>Here are a few examples of how you can use <strong>ptcolors</strong> to enhance your terminal output:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ptcolors.ptcolors</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTColors</span>
 
 <span class="n">tcolors</span> <span class="o">=</span> <span class="n">PTColors</span><span class="p">()</span>
-<span class="n">tcolors</span><span class="o">.</span><span class="n">headermsg</span><span class="p">(</span><span class="s2">&quot;This is a header message.&quot;</span><span class="p">)</span>
-<span class="n">tcolors</span><span class="o">.</span><span class="n">okmsg</span><span class="p">(</span><span class="s2">&quot;This is a success message.&quot;</span><span class="p">)</span>
-<span class="n">tcolors</span><span class="o">.</span><span class="n">warnmsg</span><span class="p">(</span><span class="s2">&quot;This is a warning message.&quot;</span><span class="p">)</span>
-<span class="n">tcolors</span><span class="o">.</span><span class="n">failmsg</span><span class="p">(</span><span class="s2">&quot;This is a failure message.&quot;</span><span class="p">)</span>
-<span class="n">tcolors</span><span class="o">.</span><span class="n">infomsg</span><span class="p">(</span><span class="s2">&quot;This is an info message.&quot;</span><span class="p">)</span>
+<span class="n">tcolors</span><span class="o">.</span><span class="n">headermsg</span><span class="p">(</span><span class="s2">"This is a header message."</span><span class="p">)</span>
+<span class="n">tcolors</span><span class="o">.</span><span class="n">okmsg</span><span class="p">(</span><span class="s2">"This is a success message."</span><span class="p">)</span>
+<span class="n">tcolors</span><span class="o">.</span><span class="n">warnmsg</span><span class="p">(</span><span class="s2">"This is a warning message."</span><span class="p">)</span>
+<span class="n">tcolors</span><span class="o">.</span><span class="n">failmsg</span><span class="p">(</span><span class="s2">"This is a failure message."</span><span class="p">)</span>
+<span class="n">tcolors</span><span class="o">.</span><span class="n">infomsg</span><span class="p">(</span><span class="s2">"This is an info message."</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This should create a terminal output similar to the one below.</p>
@@ -111,20 +115,75 @@
 <span class="n">msg</span> <span class="o">=</span> <span class="n">PTColors</span><span class="p">()</span>
 
 <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the target sequence.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Run the target sequence."""</span>
     <span class="c1"># The context manager is entered here, and the messages are set up.</span>
     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">messages</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Starting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">,</span>  <span class="c1"># Message displayed at the start</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2"> complete.&quot;</span><span class="p">,</span>    <span class="c1"># Message displayed on successful completion</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2"> failed.&quot;</span><span class="p">,</span>      <span class="c1"># Message displayed on failure</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">],</span>       <span class="c1"># The function to be executed</span>
-        <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;function-arguments&quot;</span><span class="p">],</span>  <span class="c1"># Positional arguments for the function</span>
+        <span class="sa">f</span><span class="s2">"Starting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">..."</span><span class="p">,</span>  <span class="c1"># Message displayed at the start</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2"> complete."</span><span class="p">,</span>    <span class="c1"># Message displayed on successful completion</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2"> failed."</span><span class="p">,</span>      <span class="c1"># Message displayed on failure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"function"</span><span class="p">],</span>       <span class="c1"># The function to be executed</span>
+        <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"function-arguments"</span><span class="p">],</span>  <span class="c1"># Positional arguments for the function</span>
         <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>                 <span class="c1"># Keyword arguments for the function</span>
     <span class="p">)</span> <span class="k">as</span> <span class="n">status</span><span class="p">:</span>
         <span class="c1"># The status is set based on the outcome of the context manager block</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
 </pre></div>
 </div>
+</section>
+<section id="custom-headers-and-multiline-messages">
+<h1>Custom headers and multiline messages<a class="headerlink" href="#custom-headers-and-multiline-messages" title="Link to this heading">¶</a></h1>
+<p>Use <code class="docutils literal notranslate"><span class="pre">defaultmsg</span></code> with <code class="docutils literal notranslate"><span class="pre">typ</span></code> to choose your own header. Labels have a
+minimum width of 11 terminal columns. Short labels are centered, and
+longer labels are preserved in full.</p>
+<p>Messages can be strings containing <code class="docutils literal notranslate"><span class="pre">\n</span></code> or lists of strings. Each call
+prints one timestamp and header. Continuation lines align beneath that
+call’s first message line, and intentional blank lines are preserved.
+The standard message methods also support multiline input.</p>
+<p>Multiline messages have spaced dashed connections on their first and last
+lines, joined by a solid right-hand bracket. Intermediate lines, including
+blank rows, have only the vertical marker. The bracket sits beyond the
+longest visible message line.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">color</span></code> to an existing ANSI color such as <code class="docutils literal notranslate"><span class="pre">PTColors.INFO</span></code>, or omit
+it for an uncolored header and guide. Each grouping marker uses the header’s
+color, independently of any ANSI styling inside the message.</p>
+<p>Multiline terminal output wraps at spaces where possible, reserving room
+for the actual header width and grouping guide. Long words split between
+Unicode grapheme clusters, keeping accents and joined characters together.
+Width calculations also account for combined emoji. Their actual appearance
+and width can still vary with the terminal’s rendering support.
+Files, pipes, and ordinary buffers keep their supplied line breaks.
+Single-line messages keep their existing layout.</p>
+<p>If the guide cannot fit, a grapheme is too wide, or the message contains
+controls other than ANSI color/style codes, the supplied text is printed
+without a guide. Very narrow output may still wrap naturally in the
+terminal. Resizing after printing does not reformat earlier messages.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ptcolors.ptcolors</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTColors</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="n">PTColors</span><span class="p">()</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">defaultmsg</span><span class="p">(</span>
+    <span class="s2">"Sending the workload.</span><span class="se">\n</span><span class="s2">Using the selected configuration."</span><span class="p">,</span>
+    <span class="n">typ</span><span class="o">=</span><span class="s2">"LOCAL"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">PTColors</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">defaultmsg</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">"Calculation running."</span><span class="p">,</span> <span class="s2">"Waiting for results."</span><span class="p">],</span>
+    <span class="n">typ</span><span class="o">=</span><span class="s2">"REMOTE CONTROLLER"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">PTColors</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"Calculation completed."</span><span class="p">,</span>
+    <span class="s2">"Results saved locally."</span><span class="p">,</span>
+    <span class="s2">"Temporary machine removed."</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">okmsg</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example terminal output:</p>
+<a class="reference internal image-reference" href="https://ecilsite-staging.s3.us-east-1.amazonaws.com/static/img/ptcolors/ptcolors-python-multiline-grouping.png"><img alt="Custom headers and multiline messages with matching right-hand grouping guides" src="https://ecilsite-staging.s3.us-east-1.amazonaws.com/static/img/ptcolors/ptcolors-python-multiline-grouping.png" style="width: 100%;" />
+</a>
 <section id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -144,7 +203,9 @@
         <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="#">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Examples</a><ul>
+<li><a class="reference internal" href="#">Julia Version</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#custom-headers-and-multiline-messages">Custom headers and multiline messages</a><ul>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </li>
@@ -210,7 +271,7 @@
              >next</a> &nbsp; &nbsp;</li>
     <li><a href="#">ptcolors 0.1.0 documentation</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Examples</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Julia Version</a></li> 
       </ul>
     </div>
     </div>
