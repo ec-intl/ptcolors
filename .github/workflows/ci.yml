@@ -1,44 +1,33 @@
+---
 name: Continuous-Integration
-
 on:
   pull_request:
-    types:
-      - auto_merge_enabled
-    branches:
-      - staging
+    types: [opened, synchronize, reopened, ready_for_review]
   merge_group:
-
 permissions:
   contents: read
   checks: read
-
-env:
-  EVENT: ${{ github.event_name }}
-  BRANCH: ${{ github.ref }}
-
 jobs:
   ci-tasks:
-    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    uses: ec-intl/workflow-templates/.github/workflows/ci_template.yml@e74c17cbfff7d93740da4298421f2442d0b80d87
+    with:
+      runner-name: ubuntu-24.04
+      run-on-pull-request: true
+  staging-package:
+    if: ${{ github.event_name == 'merge_group' }}
+    runs-on: ubuntu-24.04
     environment: staging
-
+    env:
+      EVENT: ${{ github.event_name }}
+      BRANCH: ${{ github.ref }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
+      - uses: actions/checkout@v7
+      - name: Run tests in container
+        run: docker compose --profile ci-testing up --build --exit-code-from ci-testing
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run tests
-        run: |
-          pytest -v --cov ./src/tests/
-
       - name: Build and upload to Test PyPI
         if: ${{ vars.STAGE_TO_PYPI == 'yes' && contains(env.BRANCH, 'staging') && env.EVENT == 'merge_group' }}
         env:
@@ -69,5 +58,6 @@ jobs:
           echo "🚀 Uploading to Test PyPI."
           python -m twine upload --repository testpypi dist/*
 
-      - name: Done
-        run: echo "🎉 Deployment complete!"
+      - name: Clean up containers
+        if: always()
+        run: docker compose --profile ci-testing down

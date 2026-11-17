@@ -1,0 +1,6 @@
+services:
+  ci-testing:
+    build:
+      context: .
+      target: ci-testing
+    profiles: [ci-testing]
