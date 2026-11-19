@@ -59,3 +59,8 @@
 
           - name: Done
             run: echo "🎉 Deployment complete!"
+
+      release-tasks:
+        needs: deployment
+        uses: ec-intl/workflow-templates/.github/workflows/make-release_template.yml@a9735128375c11016d79e3ae9a8adc7915d7480e
+        secrets: inherit
