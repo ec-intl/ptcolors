@@ -1,0 +1,2 @@
+- dependency: Update setuptools and align pytest environments.
+- release: Validate package distributions with Twine 6.2.0.
