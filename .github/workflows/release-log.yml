@@ -7,5 +7,5 @@ permissions:
   contents: write
 jobs:
   logging-tasks:
-    uses: ec-intl/workflow-templates/.github/workflows/release-log_template.yml@a9735128375c11016d79e3ae9a8adc7915d7480e
+    uses: ec-intl/workflow-templates/.github/workflows/release-log_template.yml@production
     secrets: inherit
