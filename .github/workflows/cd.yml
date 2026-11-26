@@ -79,7 +79,7 @@
               set -euo pipefail
               git fetch origin main staging --tags
               test "$(git rev-parse origin/main)" = "$GITHUB_SHA"
-              test "$(git rev-parse HEAD^{tree})" = "$(git rev-parse origin/staging^{tree})"
+              test "$(git rev-parse 'HEAD^{tree}')" = "$(git rev-parse 'origin/staging^{tree}')"
               version=$(cat VERSION)
               [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
               tag="v$version"
