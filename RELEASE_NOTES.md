@@ -1,5 +1,9 @@
 # ptcolors v1.1.1 — release candidate
 
+Package uploads reject existing filenames rather than assuming they contain the
+same build. If upload succeeds but a later release job fails, rerun only failed
+jobs in that same workflow run; do not rerun the successful upload job.
+
 ## Public release automation correction — 2026-11-26
 
 Release publishing now runs locally using the built-in GitHub token, after any
