@@ -1,3 +1,5 @@
+# ptcolors v1.1.1 — release candidate
+
 ## Public release automation correction — 2026-11-26
 
 Release publishing now runs locally using the built-in GitHub token, after any
@@ -14,8 +16,6 @@ publication is a separate outcome to verify after merge.
 
 The earlier preparation records below are historical; their shared-template and
 RPAT prerequisites are superseded for these two workflows.
-
-# ptcolors v1.1.1 — release candidate
 
 Prepared from staging for human review on 2026-11-19. No tag, release, or deployment has been published.
 
