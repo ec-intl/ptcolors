@@ -55,7 +55,41 @@
             if: ${{ vars.DEPLOY_TO_PYPI == 'yes' }}
             env:
               TWINE_PASSWORD: ${{ secrets.PYPI_KEY }}
-            run: python -m twine upload dist/*
+            run: python -m twine upload --skip-existing dist/*
 
           - name: Done
             run: echo "🎉 Deployment complete!"
+
+      release-tasks:
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[skip ci]') }}
+        needs: deployment
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+        steps:
+          - uses: actions/checkout@v7
+            with:
+              fetch-depth: 0
+          - name: Publish the reviewed main commit
+            env:
+              GH_TOKEN: ${{ github.token }}
+              GH_REPO: ${{ github.repository }}
+            shell: bash
+            run: |
+              set -euo pipefail
+              git fetch origin main staging --tags
+              test "$(git rev-parse origin/main)" = "$GITHUB_SHA"
+              test "$(git rev-parse 'HEAD^{tree}')" = "$(git rev-parse 'origin/staging^{tree}')"
+              version=$(cat VERSION)
+              [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+              tag="v$version"
+              if git show-ref --verify --quiet "refs/tags/$tag"; then
+                # Never reuse a version that points at a different commit.
+                test "$(git rev-parse "$tag^{commit}")" = "$GITHUB_SHA"
+                if gh release view "$tag" >/dev/null 2>&1; then
+                  echo "Release $tag already exists at this commit."
+                  exit 0
+                fi
+              fi
+              gh release create "$tag" --target "$GITHUB_SHA" \
+                --title "$tag" --generate-notes

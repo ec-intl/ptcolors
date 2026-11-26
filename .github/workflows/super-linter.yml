@@ -10,7 +10,7 @@
   
   on:
     pull_request:
-      types: [auto_merge_enabled]
+      types: [opened, synchronize, reopened, ready_for_review, auto_merge_enabled]
       branches: [staging]
     merge_group:
   
